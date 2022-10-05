@@ -12,16 +12,14 @@ public class App {
     static void main(String[] args) {
         port(getPort());
         Conexion connection = new Conexion();
-        get("/buscar", (req,
-                         res) -> {
+        get("/buscar", (req,res) -> {
             res.status(200);
             res.type("application/json");
             return
                     new
                             Gson().toJson(connection.buscar());
         });
-        post("/insertar", (req,
-                          res) -> {
+        post("/insertar", (req,res) -> {
             System.out.println(req + " "+res);
                     Registro a = new Registro(req.body());
             connection.insertar(a);
@@ -35,7 +33,7 @@ public class App {
                 != null) {
             return Integer.parseInt(System.getenv("PORT"));
         }
-        return 4568;
+        return 4567;
 
     }
 }
