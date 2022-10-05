@@ -20,7 +20,7 @@ public class Conexion {
 
     public Conexion() {
 
-        ConnectionString connection = new ConnectionString("mongodb+srv://juank2121:juan133812@roundrobin.chjar8r.mongodb.net/?retryWrites=true&w=majority");
+        ConnectionString connection = new ConnectionString("mongodb+srv://juank2121:juan133812@roundrobin.chjar8r.mongodb.net/roundRobin?retryWrites=true&w=majority");
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(connection)
                 .serverApi(ServerApi.builder()
@@ -28,7 +28,7 @@ public class Conexion {
                         .build())
                 .build();
         CLIENT = MongoClients.create(settings);
-        MongoDatabase database = CLIENT.getDatabase("test");
+        MongoDatabase database = CLIENT.getDatabase("roundRobin");
 
 
     }
@@ -50,7 +50,7 @@ public class Conexion {
         ArrayList<Document> documentos = new ArrayList<Document>();
         ArrayList<Registro> registros = new ArrayList<Registro>();
         BUSCAR.into(documentos);
-        
+
         for(int i = documentos.size()-1;i>=documentos.size()-10;i--){
             if(documentos.get(i).get("detalle")!=null && documentos.get(i).get("fecha")!=null){
                 registros.add(new Registro((String)documentos.get(i).get("detalle"),(Date)documentos.get(i).get("fecha")));
